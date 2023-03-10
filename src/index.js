@@ -5,6 +5,8 @@ const { engine } = require('express-handlebars');
 const app = express();
 const port = 3000;
 
+app.use(morgan('combined'));
+
 const route = require('./routes');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,6 +37,6 @@ app.set('views', path.join(__dirname, 'resources/views'));
 //routes init
 route(    app);
 
-        app.listen(port, () => {
+app.listen(port, () => {
             console.log(`Example app listening on port ${port}`);
-        });
+            });
