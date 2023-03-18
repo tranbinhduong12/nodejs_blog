@@ -29,19 +29,23 @@ class CourseController {
             .catch((error) => {});
     }
 
-    // store()
-    //     .then((req) => {
-    //         const formData = req.body;
-    //     formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVPKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjjzJ9kx5nSpVLQ-RaVLKieUEKxg`;
-    //     const course = new Course(formData);
-    //     course.save()
-    //     .then(() => res.redirect('/'))
-    //     .catch( error => {
+    // [GET] /courses/:id/edit
+    edit(req, res, next) {
+        Course.findById(req.params.id)
+            .then((course) =>
+                res.render('courses/edit', {
+                    course: mongooseToObject(course),
+                }),
+            )
+            .catch(next);
+    }
 
-    //     })
-    //     }).catch((error) => {
-
-    //     })
+    // [PUT] /courses/:id
+    update(req, res, next) {
+        Course.updateOne({ _id: req.params.id }, req.body)
+            .then(() => res.redirect('/me/stored/courses'))
+            .catch(next);
+    }
 }
 
 module.exports = new CourseController();
