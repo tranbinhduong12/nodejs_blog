@@ -17,7 +17,6 @@
       </select>
 
       <button class="btn btn-primary btn-sm check-all-submit-btn" disabled>Thực hiện</button>
-
     </div>
   </div>
 
@@ -27,12 +26,16 @@
                 <th scope="col" colspan="2">#</th>
                 <th scope="col">
                   Tên khóa học
-                  <a href="?_sort&column=name&type=desc">
-                    <span class="oi oi-elevator"></span>
-                    </a>
+                  {{{sortable 'name' _sort}}}
                   </th>
-                <th scope="col">Trình độ</th>
-                <th scope="col" colspan="2">Thời gian tạo</th>
+                <th scope="col">
+                  Trình độ
+                  {{{sortable 'level' _sort}}}
+                </th>
+                <th scope="col" colspan="2">
+                  Thời gian tạo
+                  {{{sortable 'createdAt' _sort}}}
+                </th>
             </tr>
         </thead>
         <tbody>
